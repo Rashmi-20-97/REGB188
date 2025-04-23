@@ -12,7 +12,7 @@ import edu.cjc.app.servicei.StudentServicei;
 @Service
 public class StudentServiceImpl implements StudentServicei {
 @Autowired 
-private StudentRepository sr;
+StudentRepository sr;
 
 public void saveStudentDetails(Student st) {
 	sr.save(st);
@@ -25,5 +25,21 @@ public List<Student> getAllStudents() {
 @Override
 public List<Student> searchStudentsByBatch(String batchNumber) {
 	return sr.findAllByBatchNumber(batchNumber);
+}
+@Override
+public Student getSingleObject(int rollNo) {
+	return sr.findById(rollNo).get();
+}
+
+@Override
+public void updateStudentFees(int rollNo, double ammount) {
+	 Student   s  = sr.findById(rollNo).get();
+	 s.setFeesPaid(s.getFeesPaid()+ammount);
+         sr.save(s);		             
+}
+
+@Override
+public void deleteStudent(int rollNo) {
+             sr.deleteById(rollNo);		
 }
 }

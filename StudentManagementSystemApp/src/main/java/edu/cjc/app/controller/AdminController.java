@@ -14,7 +14,10 @@ import edu.cjc.app.servicei.StudentServicei;
 
 @Controller
 public class AdminController {
-@Autowired private StudentServicei ss;	
+	
+@Autowired
+StudentServicei ss;	
+
 @RequestMapping("/")	
 public String preLogin() {
 	return "login";
@@ -35,7 +38,7 @@ public String onlogin(@RequestParam String username,@RequestParam String passwor
 		return "login";
 	}
 }
-@RequestMapping("enroll_student")
+@RequestMapping("/enroll_student")
 public String saveStudent(@ModelAttribute Student student,Model m)
 {
 ss.saveStudentDetails(student);
@@ -43,6 +46,8 @@ List<Student> list=ss.getAllStudents();
 m.addAttribute("data",list);
 return "adminscreen";
 }
+
+
 @RequestMapping("/search")
 public String getBatchStudent(@RequestParam("batchNumber") String batchNumber,Model m) {
 	List<Student> results=ss.searchStudentsByBatch(batchNumber);
@@ -57,5 +62,27 @@ public String getBatchStudent(@RequestParam("batchNumber") String batchNumber,Mo
 
 	return "adminscreen";
 }
-
+@RequestMapping("/Fees")
+public String onFees(@RequestParam("rollNo") int rollNo,Model m)
+{
+	     Student s      =ss.getSingleObject(rollNo);
+	     m.addAttribute("st", s);
+	     return "fees";
+}
+@RequestMapping("/payfees")
+public String  payFees(@RequestParam("rollNo") int rollNo,@RequestParam("ammount") double ammount,Model m) {
+	
+	  ss.updateStudentFees(rollNo,ammount);
+	  List<Student> list=ss.getAllStudents();
+	  m.addAttribute("data", list);
+	  return "adminscreen";
+}
+@RequestMapping("/remove")
+public String removeStudent(@RequestParam("rollNo") int rollNo,Model m)
+{
+	        ss.deleteStudent(rollNo);
+	        List<Student> list=ss.getAllStudents();
+			  m.addAttribute("data", list);
+	     return "adminscreen";
+}
 }
