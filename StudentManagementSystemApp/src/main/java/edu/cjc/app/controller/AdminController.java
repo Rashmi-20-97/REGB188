@@ -85,4 +85,24 @@ public String removeStudent(@RequestParam("rollNo") int rollNo,Model m)
 			  m.addAttribute("data", list);
 	     return "adminscreen";
 }
+
+@RequestMapping("/shiftbatch")
+public String selectBatch(@RequestParam int rollNo, Model m)
+{
+Student s=ss.getSingleStudent(rollNo);
+m.addAttribute("data",s);
+return "shiftbatch";
 }
+@RequestMapping("/updateData")
+public String updateData(@ModelAttribute Student s, Model m)
+{
+System.out.println("ddd");
+
+    
+ss.updateData(s);
+List<Student>list=ss.getAllStudents();
+m.addAttribute("data",list);
+return "adminscreen";
+}
+}
+

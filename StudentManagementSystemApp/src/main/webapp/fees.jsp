@@ -13,7 +13,7 @@
   <div class="w-50 align-middle border border-info  border-3 mt-2" 
    style="height: 500px">
    <h6 class="p-3 text-primary "> 
-    <u>Instalment Details :-</u> 
+    <u>Installment Details :-</u> 
    </h6> 
  
    <div class="border border-secondary m-3 p-2"> 

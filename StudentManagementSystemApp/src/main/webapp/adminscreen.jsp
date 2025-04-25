@@ -178,7 +178,7 @@ checked />
      <form action="search" class="w-100"> 
       <select class="select form-control-sm border border-primary" 
 name="batchNumber"> 
-                    <option value="#" slected>Select Batch Number</option> 
+                    <option value="#" selected>Select Batch Number</option> 
                   <option value="FDJ-160">FDJ-160</option> 
                     <option value="REG-160">REG-160</option> 
                     <option value="FDJ-161">FDJ-161</option> 
@@ -232,7 +232,7 @@ name="batchNumber">
 								<div class="btn-group btn-group-sm" role="group"
 									aria-label="...">
 									<button class="btn btn-outline-success"><a href="/Fees?rollNo=${s.rollNo}">Pay Fees</a></button>
-									<button class="btn btn-outline-primary">Shift Batch</button>
+									<button class="btn btn-outline-primary"><a href="shiftbatch?rollNo=${s.rollNo}">ShiftBatch</a></button>
 									<button class="btn btn-outline-danger"><a href="/remove?rollNo=${s.rollNo}">Remove</a></button>
 
 								</div>
